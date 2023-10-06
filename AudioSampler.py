@@ -68,7 +68,7 @@ band_averages = calculate_band_averages(y, sr, bands)
 scaled_band_averages = scale_values(band_averages)
 
 # Convert to Lua table
-table_name = "NuclearWinterCombat"
+table_name = "tblTemp"
 lua_table_str = array_to_lua_table(scaled_band_averages, table_name, 0)
 
 # Output Lua table to a file
