@@ -1,6 +1,9 @@
 import librosa
 import numpy as np
 
+# Specify the song name here
+song = "The_Square"
+
 def scale_values(values, new_min=0, new_max=32):
     values = np.log1p(values - np.min(values))
     old_min = np.min(values)
@@ -42,11 +45,11 @@ def generate_lua_script(file_basename, bands):
         table_name = f"tbl{theme.capitalize()}"
         lua_tables.append(array_to_lua_table(scaled_band_averages, table_name, 0))
 
-    lua_script = "\n\n".join(lua_tables) + """
+    lua_script = "\n\n".join(lua_tables) + f"""
 \n
-local module = {}
+local module = {{}}
 
-local tbl = {}
+local tbl = {{}}
 
 -- Calm theme
 table.insert(tbl, tblCalm)
@@ -71,12 +74,11 @@ end
 return module
 """
 
-    output_file_path = "audio_data.lua"
+    output_file_path = f"{file_basename}_data.lua"
     with open(output_file_path, "w") as file:
         file.write(lua_script)
 
 # Example usage
-file_basename = "Nuclear_Winter"
 bands = [
     (16, 60),
     (60, 250),
@@ -87,4 +89,4 @@ bands = [
     (6000, 20000)
 ]
 
-generate_lua_script(file_basename, bands)
+generate_lua_script(song, bands)
