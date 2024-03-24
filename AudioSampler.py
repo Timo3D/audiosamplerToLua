@@ -2,7 +2,7 @@ import librosa
 import numpy as np
 
 # Specify the song name here
-song = "The_Square"
+song = "karelia"
 
 def scale_values(values, new_min=0, new_max=32):
     values = np.log1p(values - np.min(values))
