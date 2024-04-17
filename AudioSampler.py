@@ -2,7 +2,7 @@ import librosa
 import numpy as np
 
 # Specify the song name here
-song = "yew_kay"
+song = "3fort2"
 
 def scale_values(values, new_min=0, new_max=32):
     values = np.log1p(values - np.min(values))
@@ -38,7 +38,7 @@ def generate_lua_script(file_basename, bands):
     lua_tables = []
 
     for theme in themes:
-        file_path = f"{file_basename}_{theme}.ogg"
+        file_path = f"{file_basename}_{theme}.wav"
         y, sr = librosa.load(file_path, sr=None)
         band_averages = calculate_band_averages(y, sr, bands)
         scaled_band_averages = scale_values(band_averages)
